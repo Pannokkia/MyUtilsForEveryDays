@@ -18,7 +18,7 @@ def touch(*files) -> bool:
         print('Permission denied!' , e.filename)
         return False
 
-def count_lines(file_to_read) -> int:
+def count_lines_with_blank_lines(file_to_read) -> int:
     """
     Read the number of lines in the file
     
@@ -40,7 +40,7 @@ def count_lines(file_to_read) -> int:
         print('Permission denied!' , e.filename)
         return -1
 
-def count_lines_exclude_blank_lines(file_to_read) -> int:
+def count_lines_without_blank_lines(file_to_read) -> int:
     """
     Read the number of lines in the file excluded blank lines
     
