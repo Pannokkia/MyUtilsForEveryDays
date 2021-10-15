@@ -18,7 +18,7 @@ def touch(*files) -> bool:
         print('Permission denied!' , e.filename)
         return False
 
-def lines_count(file_to_read) -> int:
+def count_lines(file_to_read) -> int:
     """
     Read the number of lines in the file
     
@@ -29,11 +29,36 @@ def lines_count(file_to_read) -> int:
         int: Returns the number of lines of which the file is composed
     """
     try:
+        lines = []        
+        with open(file_to_read, "r") as f:
+            lines = f.readlines()
+            return len(lines)
+    except FileNotFoundError as e:
+        print('Check file exsit', e.filename)
+        return -1
+    except PermissionError as e:
+        print('Permission denied!' , e.filename)
+        return False
+
+def count_lines_exclude_blank_lines(file_to_read) -> int:
+    """
+    Read the number of lines in the file excluded blank lines
+    
+    Args:
+        file_to_read : path + filename 
+
+    Returns:
+        int: Returns the number of lines of which the file is composed
+    """
+    try:
+        count = 0
         lines = []
-        print(file_to_read)
-        f = open(file_to_read, "r")
-        lines = f.readlines()
-        return len(lines)
+        with open(file_to_read, "r") as f:
+            lines = f.readlines()
+            for l in lines:
+                if(l != "\n"):
+                    count = count + 1
+        return count
     except FileNotFoundError as e:
         print('Check file exsit', e.filename)
         return -1
