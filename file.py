@@ -1,6 +1,3 @@
-from os import makedirs, remove, rmdir, scandir, PathLike, truncate
-from typing import Union, Optional, TextIO, Any, List, Tuple
-
 def touch(*files) -> bool:
 
     """ 
@@ -15,7 +12,7 @@ def touch(*files) -> bool:
             open(file, 'w').close()
         
         return True
-        
+
     except FileNotFoundError as e:
         print('Check path exist!' , e.filename)
     except PermissionError as e:
