@@ -15,6 +15,8 @@ def touch(*files) -> bool:
 
     except FileNotFoundError as e:
         print('Check path exist!' , e.filename)
+        return False
     except PermissionError as e:
         print('Permission denied!' , e.filename)
+        return False
     
