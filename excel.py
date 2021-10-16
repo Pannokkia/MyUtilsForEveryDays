@@ -21,6 +21,9 @@ def get_max_rows(excel_filename,sheet_name='Sheet1') -> int:
     except KeyError as e:
         print("Error:", e)
         return -1
+   except FileNotFoundError as e:
+        print('Check path and filename!' , e.filename)
+        return -1
     except PermissionError as e:
         print("Error:", e)
         return -1
@@ -44,6 +47,9 @@ def get_max_cols(excel_filename,sheet_name='Sheet1') -> int:
     except KeyError as e:
         print("Error:", e)
         return -1
+    except FileNotFoundError as e:
+        print('Check path and filename!' , e.filename)
+        return -1 
     except PermissionError as e:
         print("Error:", e)
         return -1
@@ -68,5 +74,7 @@ def rename_excel_sheet(excel_filename,old_sheet_name,new_sheet_name) -> None:
         wrkbk.save(excel_filename)
     except KeyError as e:
         print("Error:", e)
+    except FileNotFoundError as e:
+        print('Check path and filename!' , e.filename)
     except PermissionError as e:
         print("Error:", e)
