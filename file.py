@@ -38,7 +38,7 @@ def count_lines_with_blank_lines(file_to_read) -> int:
         return -1
     except PermissionError as e:
         print('Permission denied!' , e.filename)
-        return False
+        return -1
 
 def count_lines_without_blank_lines(file_to_read) -> int:
     """
@@ -64,4 +64,4 @@ def count_lines_without_blank_lines(file_to_read) -> int:
         return -1
     except PermissionError as e:
         print('Permission denied!' , e.filename)
-        return False
+        return -1
