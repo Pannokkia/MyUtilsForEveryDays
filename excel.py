@@ -1,7 +1,6 @@
 import openpyxl as xls
 
-
-def get_max_rows(excel_filename,sheet_name='Sheet1') -> int:
+def get_max_rows(excel_filename, sheet_name = 'Sheet1') -> int:
     """
         Count the maximum number of occupied rows
 
@@ -11,7 +10,7 @@ def get_max_rows(excel_filename,sheet_name='Sheet1') -> int:
       sheet_name: exchel sheet name to check.If sheet name not set, default is Sheet1
 
     Returns:
-        int: Return mac number occupied rows
+        int: Return max number occupied rows
     """
 
     try:
@@ -25,7 +24,7 @@ def get_max_rows(excel_filename,sheet_name='Sheet1') -> int:
         print("Error:", e)
         return -1
 
-def get_max_cols(excel_filename,sheet_name='Sheet1') -> int:
+def get_max_cols(excel_filename, sheet_name = 'Sheet1') -> int:
     """
         Count the maximum number of occupied columns
 
@@ -35,7 +34,7 @@ def get_max_cols(excel_filename,sheet_name='Sheet1') -> int:
         sheet_name: exchel sheet name to check.If sheet name not set, default is Sheet1
 
     Returns:
-        int: Return mac number occupied columns
+        int: Return max number occupied columns
     """
     try:
         wrkbk = xls.load_workbook(excel_filename)
@@ -47,8 +46,8 @@ def get_max_cols(excel_filename,sheet_name='Sheet1') -> int:
     except PermissionError as e:
         print("Error:", e)
         return -1
-        
-def rename_excel_sheet(excel_filename,old_sheet_name,new_sheet_name) -> None:
+
+def rename_excel_sheet(excel_filename, old_sheet_name, new_sheet_name) -> None:
     """
         Rename Sheet on excel file
 
@@ -56,10 +55,10 @@ def rename_excel_sheet(excel_filename,old_sheet_name,new_sheet_name) -> None:
 
         excel_filename: excel file to process
         old_excel_sheet_name: old name of ecel sheet
-        new_sheet_name: new name of excel file
+        new_sheet_name: new name of excel sheet
 
     Returns:
-        int: Return mac number occupied columns
+        None
     """
     try:
         wrkbk = xls.load_workbook(excel_filename)
