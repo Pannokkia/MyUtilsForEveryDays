@@ -22,4 +22,4 @@ num_cols = get_max_cols('/MyUtils/MyUtilsForEveryDays/Test/Test.xlsx','Pluto')
 print(num_cols)
 
 
-rename_excel_sheet('/MyUtils/MyUtilsForEveryDays/Test/Test.xlsx','Topolino','Pippo')
+rename_excel_sheet('/MyUtils/MyUtilsForEveryDays/Test/Test.xlsx','Pippo','Pluto')
