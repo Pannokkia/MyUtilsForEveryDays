@@ -2,7 +2,7 @@ import openpyxl as xls
 from openpyxl.styles import colors, fonts
 from openpyxl.styles import Color
 
-def get_max_rows(excel_filename, sheet_name = 'Sheet1') -> int:
+def get_max_rows(wrkbk, sheet_name = 'Sheet1') -> int:
     """
         Count the maximum number of occupied rows
 
@@ -16,7 +16,6 @@ def get_max_rows(excel_filename, sheet_name = 'Sheet1') -> int:
     """
 
     try:
-        wrkbk = xls.load_workbook(excel_filename)
         wrkbk.active = wrkbk[sheet_name]
         return wrkbk[sheet_name].max_row
     except KeyError as e:
@@ -25,8 +24,11 @@ def get_max_rows(excel_filename, sheet_name = 'Sheet1') -> int:
     except PermissionError as e:
         print("Error:", e)
         return -1
+    except TypeError as e:
+        print("Error:", e)
+        return -1
 
-def get_max_cols(excel_filename, sheet_name = 'Sheet1') -> int:
+def get_max_cols(wrkbk, sheet_name = 'Sheet1') -> int:
     """
         Count the maximum number of occupied columns
 
@@ -39,7 +41,6 @@ def get_max_cols(excel_filename, sheet_name = 'Sheet1') -> int:
         int: Return max number occupied columns
     """
     try:
-        wrkbk = xls.load_workbook(excel_filename)
         wrkbk.active = wrkbk[sheet_name]
         return wrkbk[sheet_name].max_column
     except KeyError as e:
@@ -48,14 +49,17 @@ def get_max_cols(excel_filename, sheet_name = 'Sheet1') -> int:
     except PermissionError as e:
         print("Error:", e)
         return -1
+    except TypeError as e:
+        print("Error:", e)
+        return -1
 
-def rename_excel_sheet(excel_filename, old_sheet_name, new_sheet_name) -> None:
+def rename_excel_sheet(wrkbk, old_sheet_name, new_sheet_name) -> None:
     """
         Rename Sheet on excel file
 
     Arguments: 
 
-        excel_filename: excel file to process
+        wrkbk: excel workbook
         old_excel_sheet_name: old name of ecel sheet
         new_sheet_name: new name of excel sheet
 
@@ -63,45 +67,39 @@ def rename_excel_sheet(excel_filename, old_sheet_name, new_sheet_name) -> None:
         None
     """
     try:
-        wrkbk = xls.load_workbook(excel_filename)
         sh = wrkbk[old_sheet_name]
         sh.title = new_sheet_name
-        wrkbk.save(excel_filename)
-        wrkbk.close()
     except KeyError as e:
         print("Error:", e)
     except PermissionError as e:
         print("Error:", e)
 
-def remove_excel_sheet(excel_filename, sheet_name_to_remove) -> None:
+def remove_excel_sheet(wrkbk, sheet_name_to_remove) -> None:
     """
         Remove Sheet from excel file
 
     Arguments: 
 
-        excel_filename: excel file to process
+        wrkbk: excel workbook
         sheet_name_to_remove: sheet to remove from excel file
 
     Returns:
         None
     """
     try:
-        wrkbk = xls.load_workbook(excel_filename)
         wrkbk.remove(wrkbk[sheet_name_to_remove])
-        wrkbk.save(excel_filename)
-        wrkbk.close()
     except KeyError as e:
         print("Error:", e)
     except PermissionError as e:
         print("Error:", e)
 
-def change_style_cells(excel_filename, cells,  sheet_name = 'Sheet1', color="000000", bold = False, italic = False, strike = False, underline='none', size = 10, name='Century Gothic') -> None:
+def change_style_cells(wrkbk, cells,  sheet_name = 'Sheet1', color="000000", bold = False, italic = False, strike = False, underline='none', size = 10, name='Century Gothic') -> None:
     """
     Sets the styles of  cells in an excel file 
 
     Arguments: 
 
-        excel_filename: excel file to process
+        wrkbk: excel workbook
         cells = list of cells for which to change the style
         colors =list of cells for which to change the color
         sheet_name = excel sheet where to set the new font style
@@ -114,13 +112,10 @@ def change_style_cells(excel_filename, cells,  sheet_name = 'Sheet1', color="000
         None
     """
     try:
-        wrkbk = xls.load_workbook(excel_filename)
         wrkbk.active = wrkbk[sheet_name]
         ws = wrkbk.active
         for i in range(len(cells)):
             ws[cells[i]].font = fonts.Font(b = bold, i = italic, strike = strike, u = underline,color=color, size=size, name=name)
-        wrkbk.save(excel_filename)
-        wrkbk.close()
     except KeyError as e:
         print("Error:", e)
     except PermissionError as e:

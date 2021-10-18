@@ -1,5 +1,5 @@
 import sys
-from openpyxl.styles import fonts
+import openpyxl as xls
 
 from openpyxl.styles.fonts import Font
 
@@ -12,6 +12,9 @@ COLOR_YELLOW = 'FFFF00'
 COLOR_BLACK = '000000'
 COLOR_RED = 'FF0000'
 
+excel_filename = '/MyUtils/MyUtilsForEveryDays/Test/Test.xlsx'
+wrkbk = xls.load_workbook(excel_filename)
+
 #res = touch('test1.txt','test2.txt')
 #print(res)
 
@@ -22,16 +25,19 @@ COLOR_RED = 'FF0000'
 #print(lines)
 
 
-#num_rows = get_max_rows('/MyUtils/MyUtilsForEveryDays/Test/Test.xlsx','Pluto')
-#print(num_rows)
+num_rows = get_max_rows(wrkbk,'Pluto1')
+print(num_rows)
 
-#num_cols = get_max_cols('/MyUtils/MyUtilsForEveryDays/Test/Test.xlsx','Pluto')
-#print(num_cols)
+num_cols = get_max_cols(wrkbk,'Pluto1')
+print(num_cols)
 
 
-#rename_excel_sheet('/MyUtils/MyUtilsForEveryDays/Test/Test.xlsx','Pippo','Pluto')
+#rename_excel_sheet(wrkbk,'Pippo','Pluto')
 
-#remove_excel_sheet('/MyUtils/MyUtilsForEveryDays/Test/Test.xlsx','Popo')
+#remove_excel_sheet(wrkbk,'Popo')
 
 lst_cells_to_change_font_style = ['A1','A3','D6']
-change_style_cells('/MyUtils/MyUtilsForEveryDays/Test/Test.xlsx',lst_cells_to_change_font_style, 'Pluto1', COLOR_YELLOW, bold=True,size=30, name='Arial')
+change_style_cells(wrkbk,lst_cells_to_change_font_style, 'Pluto1', COLOR_YELLOW, bold=True,size=30, name='Comic Sans MS')
+
+wrkbk.save(excel_filename)
+wrkbk.close()
