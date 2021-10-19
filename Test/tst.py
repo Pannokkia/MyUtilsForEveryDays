@@ -11,6 +11,7 @@ from MyUtilsForEveryDays.excel import get_max_rows,get_max_cols, rename_excel_sh
 COLOR_YELLOW = 'FFFF00'
 COLOR_BLACK = '000000'
 COLOR_RED = 'FF0000'
+COLOR_BLUE ='000080'
 
 excel_filename = '/MyUtils/MyUtilsForEveryDays/Test/Test.xlsx'
 wrkbk = xls.load_workbook(excel_filename)
@@ -36,8 +37,13 @@ print(num_cols)
 
 #remove_excel_sheet(wrkbk,'Popo')
 
-lst_cells_to_change_font_style = ['A1','A3','D6']
-change_style_cells(wrkbk,lst_cells_to_change_font_style, 'Pluto1', COLOR_YELLOW, bold=True,size=30, name='Comic Sans MS')
+lst_cells_to_change_font_style = {
+  "A1": COLOR_RED,
+  "A3": COLOR_YELLOW,
+  "D6": COLOR_BLUE
+}
+
+change_style_cells(wrkbk,lst_cells_to_change_font_style, 'Pluto1', bold=True,size=30, name='Comic Sans MS')
 
 wrkbk.save(excel_filename)
 wrkbk.close()
