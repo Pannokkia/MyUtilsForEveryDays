@@ -93,15 +93,14 @@ def remove_excel_sheet(wrkbk, sheet_name_to_remove) -> None:
     except PermissionError as e:
         print("Error:", e)
 
-def change_style_cells(wrkbk, cells,  sheet_name = 'Sheet1', color="000000", bold = False, italic = False, strike = False, underline='none', size = 10, name='Century Gothic') -> None:
+def change_style_cells(wrkbk, cells,  sheet_name = 'Sheet1',  bold = False, italic = False, strike = False, underline='none', size = 10, name='Century Gothic') -> None:
     """
     Sets the styles of  cells in an excel file 
 
     Arguments: 
 
         wrkbk: excel workbook
-        cells = list of cells for which to change the style
-        colors =list of cells for which to change the color
+        cells = dictionary that contains CELLS AND COLOR of cells for which to change the style
         sheet_name = excel sheet where to set the new font style
         b = Bold
         i = Italic
@@ -114,8 +113,8 @@ def change_style_cells(wrkbk, cells,  sheet_name = 'Sheet1', color="000000", bol
     try:
         wrkbk.active = wrkbk[sheet_name]
         ws = wrkbk.active
-        for i in range(len(cells)):
-            ws[cells[i]].font = fonts.Font(b = bold, i = italic, strike = strike, u = underline,color=color, size=size, name=name)
+        for key, value in cells.items():
+            ws[key].font = fonts.Font(b = bold, i = italic, strike = strike, u = underline,color=value, size=size, name=name)
     except KeyError as e:
         print("Error:", e)
     except PermissionError as e:
