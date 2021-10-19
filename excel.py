@@ -8,7 +8,7 @@ def get_max_rows(wrkbk, sheet_name = 'Sheet1') -> int:
 
     Arguments: 
         
-      excel_filename: excel file to process
+      excel_filename: excel workbook
       sheet_name: exchel sheet name to check.If sheet name not set, default is Sheet1
 
     Returns:
@@ -34,7 +34,7 @@ def get_max_cols(wrkbk, sheet_name = 'Sheet1') -> int:
 
     Arguments: 
         
-        excel_filename: excel file to process
+        excel_filename: excel workbook
         sheet_name: exchel sheet name to check.If sheet name not set, default is Sheet1
 
     Returns:
